@@ -13,11 +13,11 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Makanan',
+                'cat_name' => 'Makanan',
                 'description' => 'Kategori Makanan'
             ],
             [
-                'name' => 'Minuman',
+                'cat_name' => 'Minuman',
                 'description' => 'Kategori Minuman'
             ]
         ];
