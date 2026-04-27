@@ -47,3 +47,29 @@
         </div>
         <!-- Fruits Shop End-->
 @endsection
+
+@section('script')
+    <script>
+        function addToCart(menuId)
+        {
+            fetch("{{ route('cart.add') }}",
+                {
+                    method: 'POST',
+                    header: {
+                        'content-type': 'aplication/josn',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        id: menuId
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message)
+                    })
+                    .catch((error) => {
+                        console.error('error: ', error);
+                    });
+                })
+        }
+    </script>
+@endsection
