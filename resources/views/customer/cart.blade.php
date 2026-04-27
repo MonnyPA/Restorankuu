@@ -238,5 +238,38 @@
                     alert('Terjadi keselahan saat mengupdate keranjang')
                 });
         }
+
+        function removeItemFromCart(itemId)
+        {
+            fetch("{{ route('cart.remove') }}",
+                {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'aplication/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        id: itemId
+                    })
+                })
+                .then(response => response.json())
+                // console.log('Response:', response);
+                // return response.json();
+                .then(data => {
+                    // console.log('Data:', data); // debug
+                    if(data.success)
+                        {
+                            location.reload();
+                        } else
+                        {
+                            alert(data.message);
+                        }
+                })
+
+                .catch((error) => {
+                    console.error('error: ', error);
+                    alert('Terjadi keselahan saat menghapus Item')
+                });
+        }
     </script>
 @endsection

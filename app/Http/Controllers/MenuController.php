@@ -98,4 +98,22 @@ class MenuController extends Controller
                 ]);
             }
     }
+
+    public function removeCart(Request $request)
+    {
+        $itemId = $request->input('id');
+
+        $cart = Session::get('cart');
+
+        if(isset($cart[$itemId]))
+            {
+                unset($cart[$itemId]);
+                Session::put('cart', $cart);
+                Session::flash('success', 'Item Berhasil dikeluarkan dari keranjang atau dihapus');
+
+                return response()->json([
+                    'success' => true
+                ]);
+            }
+    }
 }
