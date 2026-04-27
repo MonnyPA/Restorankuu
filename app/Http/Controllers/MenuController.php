@@ -30,8 +30,11 @@ class MenuController extends Controller
 
     public function addToCart(Request $request)
     {
+        // dd($request->all());
         $menuId = $request->input('id');
         $menu = Item::find($menuId);
+
+        // dd($menu);
 
         if(!$menu)
             {
@@ -43,6 +46,8 @@ class MenuController extends Controller
             }
 
         $cart = Session::get('cart');
+
+        // dd($cart);
 
         if(isset($cart[$menuId]))
             {
@@ -67,5 +72,30 @@ class MenuController extends Controller
                         'message' => 'Berhasil ditambahkan ke Keranjang',
                         'cart' => $cart
                     ]);
+    }
+
+    public function updateCart(Request $request)
+    {
+        $itemId = $request->input('id');
+        $newQty = $request->input('qty');
+
+        if($newQty <= 0)
+            {
+                return response()->json([
+                    'success' => false
+                ]);
+            }
+
+        $cart = Session::get('cart');
+        if(isset($cart[$itemId]))
+            {
+                $cart[$itemId]['qty'] = $newQty;
+                Session::put('cart', $cart);
+                Session::flash('success', 'Jumlah Item berhasil diperbaharui');
+
+                return response()->json([
+                    'success' => true
+                ]);
+            }
     }
 }

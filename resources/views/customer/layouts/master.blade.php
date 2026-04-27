@@ -40,4 +40,6 @@
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
     </body>
+
+    @yield('script')
 </html>

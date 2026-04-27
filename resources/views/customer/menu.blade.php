@@ -31,7 +31,7 @@
                                                 <h4>{{ $item->name }}</h4>
                                                 <p class="text-limited">{{ $item->description }}</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
-                                                    <p class="text-dark fs-5 fw-bold mb-0">{{ 'Rp'. number_format($item->price), 0, ',','.' }}</p>
+                                                    <p class="text-dark fs-5 fw-bold mb-0">{{ 'Rp. '. number_format($item->price), 0, ',','.' }}</p>
                                                     <a href="#" onclick="addToCart({{ $item->id }})" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Tambah Keranjang</a>
                                                 </div>
                                             </div>
@@ -55,21 +55,24 @@
             fetch("{{ route('cart.add') }}",
                 {
                     method: 'POST',
-                    header: {
-                        'content-type': 'aplication/josn',
+                    headers: {
+                        'content-type': 'aplication/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
                     body: JSON.stringify({
                         id: menuId
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        alert(data.message)
-                    })
-                    .catch((error) => {
-                        console.error('error: ', error);
-                    });
                 })
+                .then(response => response.json())
+                // console.log('Response:', response);
+                // return response.json();
+                .then(data => {
+                    // console.log('Data:', data);
+                    alert(data.message)
+                })
+                .catch((error) => {
+                    console.error('error: ', error);
+                });
         }
     </script>
 @endsection
