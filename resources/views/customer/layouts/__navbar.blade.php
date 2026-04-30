@@ -1,7 +1,7 @@
         <div class="container-fluid fixed-top">
             <div class="container px-0">
                 <nav class="navbar navbar-light bg-white navbar-expand-xl">
-                    <a href="#" class="navbar-brand"><h1 class="text-primary display-6">Restoranku</h1></a>
+                    <a href="#" class="navbar-brand"><h1 class="text-primary display-6">Kyla Resto</h1></a>
                     <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars text-primary"></span>
                     </button>
@@ -21,12 +21,5 @@
             </div>
         </div>
 
-        <!-- Single Page Header start -->
-        <div class="container-fluid page-header py-5">
-            <h1 class="text-center text-white display-6">Menu Kami</h1>
-            <ol class="breadcrumb justify-content-center mb-0">
-                <li class="breadcrumb-item active text-primary">Silakan pilih menu favorit anda</li>
-            </ol>
-        </div>
-        <!-- Single Page Header End -->
+
 

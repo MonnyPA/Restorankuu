@@ -1,6 +1,14 @@
 @extends('customer.layouts.master')
 
 @section('content')
+    <!-- Single Page Header start -->
+        <div class="container-fluid page-header py-5">
+            <h1 class="text-center text-white display-6">Keranjang</h1>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item active text-primary">Silakan Periksa Pesanan Anda</li>
+            </ol>
+        </div>
+        <!-- Single Page Header End -->
     <div class="container-fluid py-5">
             <div class="container py-5">
                     @if(session('success'))
@@ -35,18 +43,12 @@
                                 @php
                                     $itemTotal = $item['price'] * $item['qty'];
                                     $subTotal += $itemTotal;
-
-                                    $tax = $subTotal * 0.1;
-                                    $total = $subTotal + $tax;
                                 @endphp
 
-
                             <tr>
-                                <th scope="row">
-                                    <div class="mb-0 mt-4 align-items-center">
-                                        {{ $loop->iteration }}
-                                    </div>
-                                </th>
+                                <td>
+                                    <p class="mb-0 mt-4">{{ $loop->iteration }}</p>
+                                </td>
                                 <td>
                                     <p class="mb-0 mt-4">{{ $item['name'] }}</p>
                                 </td>
@@ -72,7 +74,7 @@
                                     <p class="mb-0 mt-4">{{ 'Rp. '. number_format($item['price'] * $item['qty'], 0, '.','.') }}</p>
                                 </td>
                                 <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="if(confirm('Apakah Anda yakin ingin menghapus item ini?')) { removeItemFromCart('{{ $item['id'] }}') }" >
+                                    <button class="btn btn-md rounded-circle bg-light border mt-3" onclick="if(confirm('Apakah Anda yakin ingin menghapus item ini?')) { removeItemFromCart('{{ $item['id'] }}') }" >
                                         <i class="fa fa-times text-danger"></i>
                                     </button>
                                 </td>
@@ -154,6 +156,15 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="d-flex justify-content-end">
+                    <a href="{{ route('cart.clear') }}" class="btn btn-danger" onclick="confirm('Apakah anda yakin ingin mengosongkan keranjang?')">Kosongkan Keranjang</a>
+                </div>
+                @php
+                    $tax = $subTotal * 0.1;
+                    $total = $subTotal + $tax;
+                @endphp
+
                 <div class="row g-4 justify-content-end mt-1">
                     <div class="col-8"></div>
                     <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
