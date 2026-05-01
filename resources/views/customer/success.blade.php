@@ -37,6 +37,7 @@
                 @endforeach
             </tbody>
         </table>
+        <hr>
         <table class="table table-borderless">
             <tbody>
                 <tr class="text-end">

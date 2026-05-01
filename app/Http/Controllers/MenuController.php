@@ -175,7 +175,7 @@ class MenuController extends Controller
 
                 $itemDetails[] = [
                     'id' => $item['id'],
-                    'price' => (int) $item['price'] + ($item['price']*0.1),
+                    'price' => (int) ($item['price'] + ($item['price']*0.1)),
                     'quantity' => $item['qty'],
                     'name' => substr($item['name'], 0, 50)
                 ];
@@ -215,7 +215,47 @@ class MenuController extends Controller
 
         Session::forget('cart');
 
-        return redirect()->route('checkout.success', ['orderId' => $order->order_code])->with('success', 'Pesanan Berhasil dibuat');
+        if($request->payment_method == 'tunai')
+            {
+                return redirect()->route('checkout.success', ['orderId' => $order->order_code])->with('success', 'Pesanan Berhasil dibuat');
+            } else
+            {
+                \Midtrans\Config::$serverKey = config('midtrans.server_key');
+                \Midtrans\Config::$isProduction = config('midtrans.is_production');
+                \Midtrans\Config::$isSanitized = true;
+                \Midtrans\Config::$is3ds = true;
+
+                $parans =
+                    [
+                        'transaction_details' => [
+                            'order_id' => $order->order_code,
+                            'gross_amount' => (int) $order->grand_total
+                        ],
+                        'item_details' => $itemDetails,
+                        'customer_details' => [
+                            'first_name' => $user->fullname ?? 'Guest',
+                            'phone' => $user->phone
+                        ],
+                        'payment_type' => ['qris'],
+                    ];
+
+                    try
+                        {
+                            $snapToken = \Midtrans\Snap::getSnapToken($parans);
+                            return response()->json([
+                                'success' => 'success',
+                                'snap_token' => $snapToken,
+                                'order_code' => $order->order_code
+                            ]);
+
+                        } catch (\Exception $e)
+                        {
+                            return response()->json([
+                                'success' => 'error',
+                                'message' => 'Gagal Memproses Pembayaran: ' . $e->getMessage() .  ' Silahkan Coba lagi'
+                            ]);
+                        }
+            }
     }
 
     public function checkoutSuccess($orderId)
