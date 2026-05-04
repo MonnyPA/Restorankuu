@@ -59,7 +59,7 @@
                         <li class="sidebar-item {{ request()->routeIs('items.*') ? 'active' : '' }} ">
                             <a href="{{ route('items.index') }}" class='sidebar-link'>
                                 <i class="bi bi-card-list"></i>
-                                <span>Daftar Menu</span>
+                                <span>Kelola Menu</span>
                             </a>
                         </li>
 
