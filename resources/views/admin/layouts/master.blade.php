@@ -24,13 +24,17 @@
         </div>
     </div>
 
+    <script src="{{ asset('mazer/dist/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
+    <script src="{{ asset('mazer/dist/assets/static/js/pages/simple-datatables.js') }}"></script>
+
     <!--   Core JS Files   -->
     <script src="{{ asset('assets/admin/core/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('assets/admin/core/popper.min.js') }}"></script>
     <script src="{{ asset('assets/admin/core/bootstrap.min.js') }}"></script>
 
     <script src="{{ asset('assets/admin/static/js/components/dark.js') }}"></script>
-    <script src="{{ asset('assets/admin/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/admin/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script> --}}
+    <script src="{{ asset('mazer/dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 
     <!-- jQuery Scrollbar -->
     {{-- <script src="{{ asset('assets/admin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script> --}}
@@ -45,7 +49,7 @@
     <script src="{{ asset('assets/admin/static/js/pages/dashboard.js') }}assets/"></script>
 
     <!-- Datatables -->
-    <script src="{{ asset('assets/admin/datatables/datatables.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/admin/datatables/datatables.min.js') }}"></script> --}}
 
     <!-- Handle Sort Table -->
     <script>
@@ -54,7 +58,6 @@
 
         $("#basic-datatables").DataTable({
         pageLength: 7,
-        dom: '<"row"<"col-md-8"l><"col-md-4 d-flex justify-content-end"f>>rtip' + '<"row mt-3"<"col-md-6"i><"col-md-6 d-flex justify-content-end"p>>',
         initComplete: function () {
             this.api()
             .columns()
