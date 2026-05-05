@@ -122,7 +122,7 @@
                       >
                       <div class="form-check form-switch">
                         <input type="hidden" name="is_active" value="0">
-                        <input type="checkbox" class="form-check-input" id="flexSwicthCheckChecked" name="is_active" value="1">
+                        <input type="checkbox" class="form-check-input" id="flexSwicthCheckChecked" name="is_active" value="1" checked>
                         <label for="flexSwicthCheckChecked">Aktif/Tidak Aktif</label>
                       </div>
                     </div>

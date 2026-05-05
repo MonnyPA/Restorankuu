@@ -32,7 +32,11 @@ Route::get('/dashboard', function(){
 
 Route::resource('categories', CategoryController::class);
 Route::resource('users', UserController::class);
+
 Route::resource('items', ItemController::class);
+Route::get('/items/active/{id}', [ItemController::class, 'markAsActive'])->name('items.active');
+Route::get('/tasks/nonactive/{id}', [ItemController::class, 'markAsNonactive'])->name('items.nonactive');
+
 Route::resource('orders', OrderController::class);
 Route::resource('roles', RoleController::class);
 
