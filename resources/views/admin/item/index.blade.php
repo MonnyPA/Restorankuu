@@ -44,7 +44,7 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     {{-- @if(in_array(session('role'), ['Ownner','Direktur'])) --}}
-                                    <a href="" class="btn btn-primary mb-3 ms-auto">New Menu</a>
+                                    <a href="{{ route('items.create') }}" class="btn btn-primary mb-3 ms-auto">New Menu</a>
                                     {{-- @endif --}}
                                 </div>
                                 <table class="table table-striped" id="table1">
@@ -66,8 +66,12 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td class="text-center">
-                                                <span class="badge {{ $item->category->cat_name == 'Makanan' ? 'bg-warning' : 'bg-info' }}">
-                                                    {{ $item->category->cat_name == 'Makanan' ? 'Makanan' : 'Minuman' }}
+                                                <span class="badge {{
+                                                        optional($item->category)->cat_name == 'Makanan' ? 'bg-warning' :
+                                                        (optional($item->category)->cat_name == 'Minuman' ? 'bg-info' :
+                                                        'bg-success')
+                                                    }}">
+                                                    {{ $item->category->cat_name }}
                                                 </span>
                                             </td>
                                             <td class="text-center">{{ $item->name }}</td>

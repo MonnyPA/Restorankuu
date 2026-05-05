@@ -29,8 +29,10 @@
                                                 bg-warning
                                             @elseif($item->category->cat_name == "Minuman")
                                                 bg-info
+                                            @elseif($item->category->cat_name == "Snack")
+                                                bg-success
                                             @else
-                                                bg-primary
+                                                bg-secondary
                                             @endif"
                                             style="top: 10px; left: 10px;">
                                                 {{ $item->category->cat_name }}
