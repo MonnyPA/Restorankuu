@@ -68,12 +68,12 @@
                                                 <td class="text-center">{{ $user->phone }}</td>
                                                 <td class="text-center">{{ Str::ucfirst($user->role->role_name) }}</td>
                                                 <td class="text-center">
-                                                    <a href="" class="btn btn-warning btn-sm">Edit</a>
+                                                    <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
 
                                                     <form action="" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Karyawan?')">Delete</button>
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Karyawan?')"><i class="bi bi-trash"></i> Delete</button>
                                                     </form>
 
                                                 </td>

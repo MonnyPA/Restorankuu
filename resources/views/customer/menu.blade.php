@@ -31,6 +31,8 @@
                                                 bg-info
                                             @elseif($item->category->cat_name == "Snack")
                                                 bg-success
+                                            @elseif($item->category->cat_name == "Camilan")
+                                                bg-dark
                                             @else
                                                 bg-secondary
                                             @endif"

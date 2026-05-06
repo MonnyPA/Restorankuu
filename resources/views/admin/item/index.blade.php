@@ -50,7 +50,7 @@
 
                                 @if(session('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert"">
-                                        {{ session('success') }}
+                                        <p><i class="bi bi-check-circle-fill"> {{ session('success') }}</i></p>
                                         <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" style="font-size: 0.7rem;"></button>
                                     </div>
                                 @endif
@@ -77,7 +77,8 @@
                                                 <span class="badge {{
                                                         optional($item->category)->cat_name == 'Makanan' ? 'bg-warning' :
                                                         (optional($item->category)->cat_name == 'Minuman' ? 'bg-info' :
-                                                        'bg-success')
+                                                        (optional($item->category)->cat_name == 'Camilan' ? 'bg-dark' :
+                                                        'bg-success'))
                                                     }}">
                                                     {{ $item->category->cat_name }}
                                                 </span>
@@ -92,16 +93,16 @@
                                             </td>
                                             <td class="text-center">
                                                 @if ($item->is_active)
-                                                    <a href="{{ route('items.nonactive', $item->id) }}" class="btn btn-info btn-sm">Mark as Non Active</a>
+                                                    <a href="{{ route('items.nonactive', $item->id) }}" class="btn btn-info btn-sm"><i class="bi bi-x-circle"></i> Mark as Non Active</a>
                                                 @else
-                                                    <a href="{{ route('items.active', $item->id) }}" class="btn btn-success btn-sm">Mark as Active</a>
+                                                    <a href="{{ route('items.active', $item->id) }}" class="btn btn-success btn-sm"><i class="bi bi-check-circle"></i> Mark as Active</a>
                                                 @endif
-                                                <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
 
                                                 <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Menu?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Menu?')"><i class="bi bi-trash"></i> Delete</button>
                                                 </form>
 
                                             </td>

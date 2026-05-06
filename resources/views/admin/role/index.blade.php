@@ -73,12 +73,12 @@
                                                 <td class="text-center">{{ Str::ucfirst($role->role_name) }}</td>
                                                 <td class="text-center">{{ $role->description }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                    <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
 
                                                     <form action="{{ route('roles.destroy', $role->id) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Role?')">Delete</button>
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Role?')"><i class="bi bi-trash"></i> Delete</button>
                                                     </form>
 
                                                 </td>
