@@ -57,9 +57,9 @@ class ItemController extends Controller
         return redirect()->route('items.index')->with('success', 'Menu : ' . $validate['name'] . ', created successfully.');
     }
 
-    public function show(string $id)
+    public function show(Item $item)
     {
-
+        return view('admin.item.show', compact('item'));
     }
 
     public function edit(string $id)

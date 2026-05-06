@@ -83,7 +83,9 @@
                                                     {{ $item->category->cat_name }}
                                                 </span>
                                             </td>
-                                            <td class="text-center">{{ $item->name }}</td>
+                                            <td class="bi-justify">
+                                                <a href="{{ route('items.show', $item->id) }}">{{ $item->name }}</a>
+                                            </td>
                                             {{-- <td class="text-center">{{ $item->description }}</td> --}}
                                             <td class="text-center">{{ 'Rp. '. number_format($item->price), 0, ',','.' }}</td>
                                             <td class="text-center">
