@@ -39,6 +39,19 @@
           </div>
           <div class="card-content">
             <div class="card-body">
+                @if($errors->any())
+                    <div class="alert alert-warning alert-dismissible fade show py-2 px-3 small" role="alert">
+                        <div class="d-flex align-items-center mb-2">
+                            <h5 class="mb-0">Oops! Terjadi kesalahan</h5>
+                        </div>
+                        <ul class="mb-0 ps-3">
+                            @foreach ($errors->all() as $error)
+                                <li class="small">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
               <form class="form" action="{{ route('roles.store') }}" method="POST">
                 @csrf
 
