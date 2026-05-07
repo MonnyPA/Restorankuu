@@ -38,6 +38,8 @@ Route::get('/items/active/{id}', [ItemController::class, 'markAsActive'])->name(
 Route::get('/tasks/nonactive/{id}', [ItemController::class, 'markAsNonactive'])->name('items.nonactive');
 
 Route::resource('orders', OrderController::class);
+Route::get('/orders/settlement/{id}', [OrderController::class, 'markAsSettled'])->name('orders.settlement');
+
 Route::resource('roles', RoleController::class);
 
 
