@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Kelola Menu')
+@section('title', 'Tambah Menu')
 
 @section('content')
 
@@ -22,7 +22,7 @@
             <li class="breadcrumb-item active" aria-current="page">
               Kelola Menu
             </li>
-            <li class="breadcrumb-item active" aria-current="page">New Menu</li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah Menu</li>
           </ol>
         </nav>
       </div>
@@ -35,7 +35,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">New Menu</h3>
+            <h3 class="card-title">Tambah Menu</h3>
           </div>
           <div class="card-content">
             <div class="card-body">
@@ -76,7 +76,7 @@
                       >
                       <div class="col-md-9 p-0">
                         <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror" required>
-                        <option value="">Select Category</option>
+                        <option value="" disabled selected>Select Category</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
                                         {{ $category->cat_name }}

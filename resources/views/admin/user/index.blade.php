@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Manajemen Karyawan & Pelanggan')
+@section('title', 'Manajemen Karyawan')
 
 @section('content')
                 <div class="page-heading">
@@ -23,7 +23,7 @@
                                             <a href="index.html">Dashboard</a>
                                         </li>
                                         <li class="breadcrumb-item">
-                                            <a href="index.html">Manajemen Karyawan & Pelanggan</a>
+                                            <a href="index.html">Manajemen Karyawan</a>
                                         </li>
                                         <li
                                             class="breadcrumb-item active"
@@ -39,22 +39,24 @@
                     <section class="section">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Manajemen Karyawan & Pelanggan</h3>
+                                <h3 class="card-title">Manajemen Karyawan</h3>
                             </div>
                             <div class="card-body">
                                 <div class="d-flex">
                                     {{-- @if(in_array(session('role'), ['Ownner','Direktur'])) --}}
-                                    <a href="" class="btn btn-primary mb-3 ms-auto">New Karyawan</a>
+                                    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3 ms-auto">New Karyawan</a>
                                     {{-- @endif --}}
                                 </div>
                                 <table class="table table-striped" id="table1">
                                     <thead>
-                                       <tr>
-                                            <th class="text-center">No</th>
-                                            <th class="text-center">Fullname</th>
-                                            <th class="text-center">Phone</th>
-                                            {{-- <th class="text-center">Description</th> --}}
-                                            <th class="text-center">Role</th>
+                                        <tr>
+                                            <th class="">No</th>
+                                            <th class="">Username</th>
+                                            <th class="">Fullname</th>
+                                            <th class="">Email</th>
+                                            <th class="">Phone</th>
+                                            {{-- <th class="">Description</th> --}}
+                                            <th class="">Role</th>
                                             {{-- @if(in_array(session('role'), ['Ownner','Direktur'])) --}}
                                             <th class="text-center">Action</th>
                                             {{-- @endif --}}
@@ -63,10 +65,12 @@
                                     <tbody>
                                         @foreach ($users as $user)
                                             <tr>
-                                                <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td class="text-center">{{ $user->fullname }}</td>
-                                                <td class="text-center">{{ $user->phone }}</td>
-                                                <td class="text-center">{{ Str::ucfirst($user->role->role_name) }}</td>
+                                                <td class="">{{ $loop->iteration }}</td>
+                                                <td class="">{{ $user->username }}</td>
+                                                <td class="">{{ $user->fullname }}</td>
+                                                <td class="">{{ $user->email }}</td>
+                                                <td class="">{{ $user->phone }}</td>
+                                                <td class="">{{ Str::ucfirst($user->role->role_name) }}</td>
                                                 <td class="text-center">
                                                     <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
 

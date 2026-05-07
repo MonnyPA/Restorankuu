@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Category')
+@section('title', 'Tambah Category')
 
 @section('content')
 
@@ -22,7 +22,7 @@
             <li class="breadcrumb-item active" aria-current="page">
               Kelola Category
             </li>
-            <li class="breadcrumb-item active" aria-current="page">New Category</li>
+            <li class="breadcrumb-item active" aria-current="page">Tambah Category</li>
           </ol>
         </nav>
       </div>
@@ -35,7 +35,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">New Category</h3>
+            <h3 class="card-title">Tambah Category</h3>
           </div>
           <div class="card-content">
             <div class="card-body">

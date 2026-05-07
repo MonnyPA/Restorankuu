@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Kelola Menu')
+@section('title', 'Update Menu')
 
 @section('content')
 

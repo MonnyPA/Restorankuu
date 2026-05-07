@@ -66,7 +66,7 @@
                         <li class="sidebar-item {{ request()->routeIs('users.*') ? 'active' : '' }} ">
                             <a href="{{ route('users.index') }}" class='sidebar-link'>
                                 <i class="bi bi-card-list"></i>
-                                <span>Manajemen Karyawan & Pelanggan</span>
+                                <span>Manajemen Karyawan</span>
                             </a>
                         </li>
 

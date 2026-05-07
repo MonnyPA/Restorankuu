@@ -83,8 +83,8 @@
                                                     {{ $item->category->cat_name }}
                                                 </span>
                                             </td>
-                                            <td class="bi-justify">
-                                                <a href="{{ route('items.show', $item->id) }}">{{ $item->name }}</a>
+                                            <td class="text-center">
+                                                <a href="">{{ $item->name }}</a>
                                             </td>
                                             {{-- <td class="text-center">{{ $item->description }}</td> --}}
                                             <td class="text-center">{{ 'Rp. '. number_format($item->price), 0, ',','.' }}</td>
@@ -94,6 +94,7 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
+                                                <a href="{{ route('items.show', $item->id) }}" class="btn btn-light-secondary btn-sm"><i class="bi bi-activity"></i> View</a>
                                                 @if ($item->is_active)
                                                     <a href="{{ route('items.nonactive', $item->id) }}" class="btn btn-info btn-sm"><i class="bi bi-x-circle"></i> Mark as Non Active</a>
                                                 @else
