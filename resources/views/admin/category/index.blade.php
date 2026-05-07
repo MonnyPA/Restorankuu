@@ -78,7 +78,7 @@
                                                     <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Category?')"><i class="bi bi-trash"></i> Delete</button>
+                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Category {{ $category->cat_name }}?')"><i class="bi bi-trash"></i> Delete</button>
                                                     </form>
 
                                                 </td>
