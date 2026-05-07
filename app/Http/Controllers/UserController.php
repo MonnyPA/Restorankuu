@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $users = User::whereHas('role', function($query){
@@ -19,24 +17,18 @@ class UserController extends Controller
         return view('admin.user.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $roles = Role::all();
         return view('admin.user.create', compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validate = $request->validate([
             'fullname' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username',
+            'phone' => 'required|string|max:15',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
             'role_id' => 'required|exists:roles,id'
@@ -48,7 +40,7 @@ class UserController extends Controller
             'email.required' => 'The email address is required',
             'password.required' => 'The password is required',
             'role_id.required' => 'The role is required',
-            'password.confirmed' => 'The fullname confirmation does not match',
+            'password.confirmed' => 'The password confirmation does not match',
         ]);
 
         //create a new user
@@ -56,38 +48,56 @@ class UserController extends Controller
 
         User::create($validate);
 
-        return redirect()->route('users.index')->with('success', 'Karyawa : ' . $validate['fullname'] . ', created successfully.');
+        return redirect()->route('users.index')->with('success', 'Karyawan : ' . $validate['fullname'] . ', created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return view('admin.user.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        $roles = Role::all();
+        return view('admin.user.edit', compact('user','roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        // Validate the request data
+        $validate = $request->validate([
+            'fullname' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
+            'phone' => 'required|string|max:15',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => ['nullable','string','min:8','confirmed', function($attribute, $value, $fail) use ($user){
+                if(Hash::check($value, $user->password)){
+                    $fail("Password baru tidak boleh sama dengan Password lama");
+                }
+            },
+            ],
+            'role_id' => 'required|exists:roles,id',
+        ],
+        [
+            'fullname.required' => 'The fullname is required',
+            'username.required' => 'The username is required',
+            'phone.required' => 'The phone number is required',
+            'email.required' => 'The email address is required',
+            'role_id.required' => 'The role is required',
+            'password.confirmed' => 'The password confirmation does not match'
+        ]);
+        //create a new user
+        $validate['password'] = bcrypt($validate['password']);
+
+        $user->update($validate);
+
+        return redirect()->route('users.index')->with('success', 'Karyawan : ' . $validate['fullname'] . ', Update successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'Karyawan : ' . $user->fullname . ', Deleted successfully.');
     }
 }
