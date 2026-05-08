@@ -96,9 +96,9 @@
                                             <td class="text-center">
                                                 <a href="{{ route('items.show', $item->id) }}" class="btn btn-light-secondary btn-sm"><i class="bi bi-eye"></i> View</a>
                                                 @if ($item->is_active)
-                                                    <a href="{{ route('items.nonactive', $item->id) }}" class="btn btn-info btn-sm"><i class="bi bi-x-circle"></i> Mark as Non Active</a>
+                                                    <a href="{{ route('items.nonactive', $item->id) }}" class="btn btn-info btn-sm" onclick="return confirm('Are you sure you want to Non Active this Menu : {{ $item->name }}?')"><i class="bi bi-x-circle"></i> Non Active</a>
                                                 @else
-                                                    <a href="{{ route('items.active', $item->id) }}" class="btn btn-success btn-sm"><i class="bi bi-check-circle"></i> Mark as Active</a>
+                                                    <a href="{{ route('items.active', $item->id) }}" class="btn btn-success btn-sm" onclick="return confirm('Are you sure you want to Active this Menu : {{ $item->name }}?')"><i class="bi bi-check-circle"></i> Active</a>
                                                 @endif
                                                 <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
 

@@ -86,9 +86,9 @@
                 <div class="row">
                   <div class="col-12 d-flex justify-content-center">
                     @if ($item->is_active)
-                        <a href="{{ route('items.nonactive', $item->id) }}" class="btn btn-info ms-2">Mark as Non Active</a>
+                        <a href="{{ route('items.nonactive', $item->id) }}" class="btn btn-info ms-2">Non Active</a>
                     @else
-                        <a href="{{ route('items.active', $item->id) }}" class="btn btn-success ms-2">Mark as Active</a>
+                        <a href="{{ route('items.active', $item->id) }}" class="btn btn-success ms-2">Active</a>
                     @endif
                     <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning ms-2">Edit</a>
                     <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="d-inline">

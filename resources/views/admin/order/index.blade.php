@@ -83,7 +83,7 @@
                                             <td class="text-center">
                                                 <a href="{{ route('orders.show', $order->id) }}" class="btn btn-light-secondary btn-sm"><i class="bi bi-eye"></i> View</a>
                                                 @if ($order->status == 'pending' && $order->payment_method == 'tunai')
-                                                    <a href="{{ route('orders.settlement', $order->id) }}" class="btn btn-info btn-sm"><i class="i bi-check-circle"></i> Mark as Settlement</a>
+                                                    <a href="{{ route('orders.settlement', $order->id) }}" class="btn btn-info btn-sm" onclick="return confirm('Are you sure you want to Settlement this Order Code : {{ $order->order_code }}?')"><i class="i bi-check-circle"></i> Mark as Settlement</a>
                                                 @endif
                                                 @if($order->status == "pending")
                                                 <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
