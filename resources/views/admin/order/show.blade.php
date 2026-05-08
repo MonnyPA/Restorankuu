@@ -121,6 +121,10 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
+                                    <tr>
+                                        <th colspan="8" class="text-end">Grand Total </th>
+                                        <th>{{ 'Rp. '. number_format($order->grand_total, 0,',','.') }}</th>
+                                    </tr>
                                 </table>
                             </div>
                         </div>

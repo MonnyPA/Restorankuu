@@ -37,6 +37,7 @@
                 @endforeach
             </tbody>
         </table>
+        <small class="text-center"><i>Catatan : {{ $order->note }}</i></small>
         <hr>
         <table class="table table-borderless">
             <tbody>
