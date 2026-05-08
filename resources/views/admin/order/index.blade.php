@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Kelola Pesanan')
+@section('title', 'Daftar Pesanan')
 
 @section('content')
                 <div class="page-heading">
@@ -23,7 +23,7 @@
                                             <a href="index.html">Dashboard</a>
                                         </li>
                                         <li class="breadcrumb-item">
-                                            <a href="index.html">Kelola Pesanan</a>
+                                            <a href="index.html">Daftar Pesanan</a>
                                         </li>
                                         <li
                                             class="breadcrumb-item active"
@@ -39,9 +39,14 @@
                     <section class="section">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Kelola Pesanan</h3>
+                                <h3 class="card-title">Daftar Pesanan</h3>
                             </div>
                             <div class="card-body">
+                                <div class="d-flex">
+                                    {{-- @if(in_array(session('role'), ['Ownner','Direktur'])) --}}
+                                    <a href="#" class="btn btn-primary mb-3 ms-auto">New Pesanan</a>
+                                    {{-- @endif --}}
+                                </div>
                                 @if(session('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert"">
                                         {{ session('success') }}
@@ -76,17 +81,18 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-                                                <a href="#" class="btn btn-light-secondary btn-sm"><i class="bi bi-activity"></i> View</a>
+                                                <a href="{{ route('orders.show', $order->id) }}" class="btn btn-light-secondary btn-sm"><i class="bi bi-eye"></i> View</a>
                                                 @if ($order->status == 'pending' && $order->payment_method == 'tunai')
                                                     <a href="{{ route('orders.settlement', $order->id) }}" class="btn btn-info btn-sm"><i class="i bi-check-circle"></i> Mark as Settlement</a>
                                                 @endif
+                                                @if($order->status == "pending")
                                                 <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
-
-                                                <form action="#" method="POST" class="d-inline">
+                                                @endif
+                                                {{-- <form action="#" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Menu {{ $order->order_code }}?')"><i class="bi bi-trash"></i> Delete</button>
-                                                </form>
+                                                </form> --}}
 
                                             </td>
                                             {{-- <td class="text-center">

@@ -10,7 +10,7 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $items = Item::all();
+        $items = Item::all()->sortBy('name');
         return view('admin.item.index', compact('items'));
     }
 

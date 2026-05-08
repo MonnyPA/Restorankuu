@@ -54,9 +54,11 @@
                 </tr>
             </tbody>
         </table>
-        @if($order->payment_method == "tunai")
+        @if($order->payment_method == "tunai" && $order->status == 'pending')
             <p class="small text-center">Tunjukan Kode Bayar ini ke Kasir. <br>Jangan Lupa Senyum ya..!!!</p>
-        @elseif($order->payment_method == "qris")
+        @elseif($order->payment_method == "qris" && $order->status == 'pending')
+            <p class="small text-center">Silahkan Selesaikan Proses Pembayaran Anda. <br>Jangan Lupa Senyum ya..!!!</p>
+        @elseif($order->status == 'settlement')
             <p class="small text-center">Terimakasih atas Pesanannya.</p>
         @endif
         <hr>

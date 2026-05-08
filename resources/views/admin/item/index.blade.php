@@ -94,7 +94,7 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-                                                <a href="{{ route('items.show', $item->id) }}" class="btn btn-light-secondary btn-sm"><i class="bi bi-activity"></i> View</a>
+                                                <a href="{{ route('items.show', $item->id) }}" class="btn btn-light-secondary btn-sm"><i class="bi bi-eye"></i> View</a>
                                                 @if ($item->is_active)
                                                     <a href="{{ route('items.nonactive', $item->id) }}" class="btn btn-info btn-sm"><i class="bi bi-x-circle"></i> Mark as Non Active</a>
                                                 @else
@@ -102,11 +102,11 @@
                                                 @endif
                                                 <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
 
-                                                <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="d-inline">
+                                                {{-- <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Menu {{ $item->name }}?')"><i class="bi bi-trash"></i> Delete</button>
-                                                </form>
+                                                </form> --}}
 
                                             </td>
                                         </tr>
