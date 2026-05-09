@@ -70,8 +70,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 d-flex justify-content-end">
+                                            @if(Auth::user()->role->role_name == 'admin' || Auth::user()->role->role_name == 'cashier' || Auth::user()->role->role_name == 'direktur' || Auth::user()->role->role_name == 'owner')
                                             @if ($order->status == 'pending' && $order->payment_method == 'tunai')
                                                 <a href="{{ route('orders.settlement', $order->id) }}" class="btn btn-success"><i class="bi bi-check-circle"></i> Mark as Settlement</a>
+                                            @endif
                                             @endif
                                         {{-- <button type="submit" class="btn btn-success">Update Role</button> --}}
                                             <a href="{{ route('orders.index') }}" class="btn btn-info ms-2"><i class="bi bi-arrow-left"></i> Kembali</a>

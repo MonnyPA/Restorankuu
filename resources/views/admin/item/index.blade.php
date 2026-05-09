@@ -84,7 +84,7 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
-                                                <a href="">{{ $item->name }}</a>
+                                                <a href="{{ route('items.show', $item->id) }}">{{ $item->name }}</a>
                                             </td>
                                             {{-- <td class="text-center">{{ $item->description }}</td> --}}
                                             <td class="text-center">{{ 'Rp. '. number_format($item->price), 0, ',','.' }}</td>
@@ -95,12 +95,15 @@
                                             </td>
                                             <td class="text-center">
                                                 <a href="{{ route('items.show', $item->id) }}" class="btn btn-light-secondary btn-sm"><i class="bi bi-eye"></i> View</a>
+                                                @if(Auth::user()->role->role_name == 'admin' || Auth::user()->role->role_name == 'direktur' || Auth::user()->role->role_name == 'owner' || Auth::user()->role->role_name == 'manager')
                                                 @if ($item->is_active)
                                                     <a href="{{ route('items.nonactive', $item->id) }}" class="btn btn-info btn-sm" onclick="return confirm('Are you sure you want to Non Active this Menu : {{ $item->name }}?')"><i class="bi bi-x-circle"></i> Non Active</a>
                                                 @else
                                                     <a href="{{ route('items.active', $item->id) }}" class="btn btn-success btn-sm" onclick="return confirm('Are you sure you want to Active this Menu : {{ $item->name }}?')"><i class="bi bi-check-circle"></i> Active</a>
-                                                @endif
                                                 <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
+                                                @endif
+                                                @endif
+
 
                                                 {{-- <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="d-inline">
                                                     @csrf

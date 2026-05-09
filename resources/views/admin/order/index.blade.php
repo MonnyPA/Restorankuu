@@ -44,8 +44,9 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     {{-- @if(in_array(session('role'), ['Ownner','Direktur'])) --}}
+                                    @if(Auth::user()->role->role_name == 'admin' || Auth::user()->role->role_name == 'cashier')
                                     <a href="#" class="btn btn-primary mb-3 ms-auto">New Pesanan</a>
-                                    {{-- @endif --}}
+                                    @endif
                                 </div>
                                 @if(session('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert"">
@@ -63,7 +64,9 @@
                                             <th class="text-center">Total Harga</th>
                                             <th class="text-center">Metode <br>Pembayaran</th>
                                             <th class="text-center">Status <br>Pembayaran</th>
+                                            @if(Auth::user()->role->role_name == 'admin' || Auth::user()->role->role_name == 'cashier' || Auth::user()->role->role_name == 'direktur' || Auth::user()->role->role_name == 'owner')
                                             <th class="text-center">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -71,7 +74,9 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td class="text-center">{{ \Carbon\Carbon::parse($order->created_at)->format('d M Y') }}</td>
-                                            <td class="text-center">{{ $order->order_code }}</td>
+                                            <td class="text-center">
+                                                <a href="{{ route('orders.show', $order->id) }}">{{ $order->order_code }}</a>
+                                            </td>
                                             {{-- <td class="text-center">{{ Str::ucfirst($order->user->fullname) }}</td> --}}
                                             <td class="text-center">{{ 'Rp. '. number_format($order->grand_total), 0, ',','.' }}</td>
                                             <td class="text-center">{{ Str::ucfirst($order->payment_method) }}</td>
@@ -81,13 +86,15 @@
                                                 </span>
                                             </td>
                                             <td class="text-center">
+                                                @if(Auth::user()->role->role_name == 'admin' || Auth::user()->role->role_name == 'cashier' || Auth::user()->role->role_name == 'direktur' || Auth::user()->role->role_name == 'owner')
                                                 <a href="{{ route('orders.show', $order->id) }}" class="btn btn-light-secondary btn-sm"><i class="bi bi-eye"></i> View</a>
-                                                @if ($order->status == 'pending' && $order->payment_method == 'tunai')
-                                                    <a href="{{ route('orders.settlement', $order->id) }}" class="btn btn-info btn-sm" onclick="return confirm('Are you sure you want to Settlement this Order Code : {{ $order->order_code }}?')"><i class="i bi-check-circle"></i> Mark as Settlement</a>
+                                                    @if ($order->status == 'pending' && $order->payment_method == 'tunai')
+                                                        <a href="{{ route('orders.settlement', $order->id) }}" class="btn btn-success btn-sm" onclick="return confirm('Are you sure you want to Settlement this Order Code : {{ $order->order_code }}?')"><i class="i bi-check-circle"></i> Mark as Settlement</a>
+                                                    @endif
                                                 @endif
-                                                @if($order->status == "pending")
+                                                {{-- @if($order->status == "pending")
                                                 <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
-                                                @endif
+                                                @endif --}}
                                                 {{-- <form action="#" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')

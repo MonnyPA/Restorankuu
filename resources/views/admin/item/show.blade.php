@@ -84,18 +84,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-12 d-flex justify-content-center">
+                  <div class="col-12 d-flex justify-content-end">
+                    @if(Auth::user()->role->role_name == 'admin' || Auth::user()->role->role_name == 'direktur' || Auth::user()->role->role_name == 'owner' || Auth::user()->role->role_name == 'manager')
                     @if ($item->is_active)
                         <a href="{{ route('items.nonactive', $item->id) }}" class="btn btn-info ms-2">Non Active</a>
                     @else
                         <a href="{{ route('items.active', $item->id) }}" class="btn btn-success ms-2">Active</a>
                     @endif
                     <a href="{{ route('items.edit', $item->id) }}" class="btn btn-warning ms-2">Edit</a>
-                    <form action="{{ route('items.destroy', $item->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger ms-2" onclick="return confirm('Are you sure you want to delete this Menu?')">Delete</button>
-                    </form>
+                    @endif
                     <a href="{{ route('items.index') }}" class="btn btn-secondary ms-2">Kembali</a>
                   </div>
                 </div>
