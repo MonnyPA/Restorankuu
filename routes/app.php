@@ -48,9 +48,7 @@ Route::middleware(['role:admin|manager|owner|direktur|chef|cashier'])->group(fun
     Route::get('/items/active/{id}', [ItemController::class, 'markAsActive'])->name('items.active');
     Route::get('/tasks/nonactive/{id}', [ItemController::class, 'markAsNonactive'])->name('items.nonactive');
 
-    Route::get('/dashboard', function(){
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 

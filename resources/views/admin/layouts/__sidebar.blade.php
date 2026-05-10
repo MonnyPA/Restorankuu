@@ -73,7 +73,7 @@
 
                         <li class="sidebar-item {{ request()->routeIs('roles.*') ? 'active' : '' }} ">
                             <a href="{{ route('roles.index') }}" class='sidebar-link'>
-                                <i class="bi bi-person-badge"></i>
+                                <i class="bi bi-person-fill-gear"></i>
                                 <span>Manajemen Role</span>
                             </a>
                         </li>

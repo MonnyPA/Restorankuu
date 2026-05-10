@@ -110,7 +110,16 @@
                                         @foreach ($orderItems as $menu)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td class="text-center">{{ $menu->item->category->cat_name ?? '-' }}</td>
+                                            <td class="text-center">
+                                                <span class="badge {{
+                                                        optional($menu->item->category)->cat_name == 'Makanan' ? 'bg-warning' :
+                                                        (optional($menu->item->category)->cat_name == 'Minuman' ? 'bg-info' :
+                                                        (optional($menu->item->category)->cat_name == 'Camilan' ? 'bg-dark' :
+                                                        'bg-success'))
+                                                    }}">
+                                                    {{ $menu->item->category->cat_name }}
+                                                </span>
+                                            </td>
                                             <td class="text-center">
                                                 <img src="{{ asset('img_item_upload/' . $menu->item->img) }}" alt="{{ $menu->item->name }}" class="img-thumbnail mb-2" style="width: 60px; height: 60px;" onerror="this.onerror=null;this.src='{{ $menu->item->img }}';">
                                             </td>
