@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\QrCodeController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,8 @@ Route::get('/', function () {
     return redirect()->route('menu');});
 
 Route::get('/menu', [MenuController::class, 'index'])->name('menu');
+Route::get('/menu/{table}', [MenuController::class, 'indexTable'])->name('menu.table');
+
 Route::get('/cart', [MenuController::class, 'cart'])->name('cart');
 Route::post('/cart/add', [MenuController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update', [MenuController::class, 'updateCart'])->name('cart.update');
@@ -30,6 +33,9 @@ Route::middleware(['role:admin|manager|owner|direktur|cashier'])->group(function
 
     Route::resource('categories', CategoryController::class);
     Route::get('/orders/settlement/{id}', [OrderController::class, 'markAsSettled'])->name('orders.settlement');
+
+    Route::get('/admin/qrcode', [QrCodeController::class, 'index'])
+    ->name('qrcode.index');
 
 });
 

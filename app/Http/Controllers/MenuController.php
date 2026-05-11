@@ -26,6 +26,13 @@ class MenuController extends Controller
         return view('customer.menu', compact('items', 'tableNumber'));
     }
 
+    public function indexTable($table)
+        {
+            $items = Item::all();
+
+            return view('customer.menu', compact('items', 'table'));
+        }
+
     // Keranjang
     public function cart()
     {

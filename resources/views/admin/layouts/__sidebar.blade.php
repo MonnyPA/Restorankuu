@@ -114,6 +114,13 @@
                                 <span>Manajemen Category</span>
                             </a>
                         </li>
+
+                        <li class="sidebar-item {{ request()->routeIs('qrcode.*') ? 'active' : '' }} ">
+                            <a href="{{ route('qrcode.index') }}" class='sidebar-link'>
+                                <i class="bi bi-upc-scan"></i>
+                                <span>Cetak QR Code</span>
+                            </a>
+                        </li>
                         @endif
 
                         @if(Auth::user()->role->role_name == 'cashier' || Auth::user()->role->role_name == 'chef')
