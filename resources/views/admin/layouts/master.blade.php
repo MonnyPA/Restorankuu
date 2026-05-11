@@ -39,11 +39,7 @@
     <script src="{{ asset('assets/admin/core/bootstrap.min.js') }}"></script>
 
     <script src="{{ asset('assets/admin/static/js/components/dark.js') }}"></script>
-    {{-- <script src="{{ asset('assets/admin/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script> --}}
     <script src="{{ asset('mazer/dist/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-
-    <!-- jQuery Scrollbar -->
-    {{-- <script src="{{ asset('assets/admin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script> --}}
 
     <script src="{{ asset('assets/admin/compiled/js/app.js') }}"></script>
 
@@ -53,9 +49,6 @@
     <!-- Need: Apexcharts -->
     <script src="{{ asset('assets/admin/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/admin/static/js/pages/dashboard.js') }}assets/"></script>
-
-    <!-- Datatables -->
-    {{-- <script src="{{ asset('assets/admin/datatables/datatables.min.js') }}"></script> --}}
 
     <!-- Handle Sort Table -->
     <script>
@@ -97,5 +90,4 @@
     </script>
 
 </body>
-{{-- @yield('script') --}}
 </html>

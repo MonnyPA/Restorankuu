@@ -28,6 +28,17 @@
             <h1 class="auth-title">Kyla Resto</h1>
             <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
+            @if ($errors->any())
+                <div class="alert alert-danger border-0 shadow-sm py-3 rounded-3 d-flex align-items-center">
+                    <i class="bi bi-shield-exclamation fs-4 me-2"></i>
+
+                    <div>
+                        <strong>Login Failed!</strong><br>
+                        {{ $errors->first() }}
+                    </div>
+                </div>
+            @endif
+
             <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="form-group position-relative has-icon-left mb-4">

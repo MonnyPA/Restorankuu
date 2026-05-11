@@ -7,11 +7,6 @@
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
                                 <h3>Detail Pesanan</h3>
-                                {{-- <p class="text-subtitle text-muted">
-                                    A sortable, searchable, paginated table
-                                    without dependencies thanks to
-                                    simple-datatables.
-                                </p> --}}
                             </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav
@@ -75,7 +70,6 @@
                                                 <a href="{{ route('orders.settlement', $order->id) }}" class="btn btn-success"><i class="bi bi-check-circle"></i> Mark as Settlement</a>
                                             @endif
                                             @endif
-                                        {{-- <button type="submit" class="btn btn-success">Update Role</button> --}}
                                             <a href="{{ route('orders.index') }}" class="btn btn-info ms-2"><i class="bi bi-arrow-left"></i> Kembali</a>
                                         </div>
                                 </div>

@@ -6,13 +6,7 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
-                                <h3></h3>
-                                {{-- <p class="text-subtitle text-muted">
-                                    A sortable, searchable, paginated table
-                                    without dependencies thanks to
-                                    simple-datatables.
-                                </p> --}}
-                            </div>
+
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav
                                     aria-label="breadcrumb"
@@ -43,9 +37,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="d-flex">
-                                    {{-- @if(in_array(session('role'), ['Ownner','Direktur'])) --}}
                                     <a href="{{ route('roles.create') }}" class="btn btn-primary mb-3 ms-auto">New Role</a>
-                                    {{-- @endif --}}
                                 </div>
 
                                 @if(session('success'))
@@ -61,9 +53,7 @@
                                             <th class="text-center">No</th>
                                             <th class="text-center">Role Name</th>
                                             <th class="text-center">Description</th>
-                                            {{-- @if(in_array(session('role'), ['Ownner','Direktur'])) --}}
                                             <th class="text-center">Action</th>
-                                            {{-- @endif --}}
                                         </tr>
                                     </thead>
                                     <tbody>

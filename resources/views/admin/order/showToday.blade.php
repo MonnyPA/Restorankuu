@@ -6,13 +6,6 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-12 col-md-6 order-md-1 order-last">
-                                {{-- <h3>Kelola Pesanan</h3> --}}
-                                {{-- <p class="text-subtitle text-muted">
-                                    A sortable, searchable, paginated table
-                                    without dependencies thanks to
-                                    simple-datatables.
-                                </p> --}}
-                            </div>
                             <div class="col-12 col-md-6 order-md-2 order-first">
                                 <nav
                                     aria-label="breadcrumb"
@@ -48,7 +41,6 @@
                                             <th class="text-center">No</th>
                                             <th class="text-center">Tanggal Order</th>
                                             <th class="text-center">Kode Order</th>
-                                            {{-- <th class="text-center">Nama Pemesan</th> --}}
                                             <th class="text-center">Total Harga</th>
                                             <th class="text-center">Metode <br>Pembayaran</th>
                                             <th class="text-center">Status <br>Pembayaran</th>
@@ -65,7 +57,6 @@
                                             <td class="text-center">
                                                 <a href="{{ route('orders.show', $order->id) }}">{{ $order->order_code }}</a>
                                             </td>
-                                            {{-- <td class="text-center">{{ Str::ucfirst($order->user->fullname) }}</td> --}}
                                             <td class="text-center">{{ 'Rp. '. number_format($order->grand_total), 0, ',','.' }}</td>
                                             <td class="text-center">{{ Str::ucfirst($order->payment_method) }}</td>
                                             <td class="text-center">
@@ -80,27 +71,7 @@
                                                         <a href="{{ route('orders.settlement', $order->id) }}" class="btn btn-success btn-sm" onclick="return confirm('Are you sure you want to Settlement this Order Code : {{ $order->order_code }}?')"><i class="i bi-check-circle"></i> Mark as Settlement</a>
                                                     @endif
                                                 @endif
-                                                {{-- @if($order->status == "pending")
-                                                <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
-                                                @endif --}}
-                                                {{-- <form action="#" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Menu {{ $order->order_code }}?')"><i class="bi bi-trash"></i> Delete</button>
-                                                </form> --}}
-
                                             </td>
-                                            {{-- <td class="text-center">
-                                                @if(in_array(session('role'), ['Ownner','Direktur']))
-                                                <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-warning btn-sm">Edit</a>
-
-                                                <form action="{{ route('departments.destroy', $department->id) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this department?')">Delete</button>
-                                                </form>
-                                                @endif
-                                            </td> --}}
                                         </tr>
                                     @endforeach
                                     </tbody>
